@@ -3,6 +3,10 @@ require("database.php");
 $username = mysqli_real_escape_string($con, $_POST['username']);
 $password = mysqli_real_escape_string($con, $_POST['password']);
 $result = mysqli_query($con, "SELECT * FROM user WHERE username = '$username'");
+if(empty($username) )
+    die("用户名不能为空");
+if(empty($password))
+    die("密码不能为空");
 if (mysqli_num_rows($result) != 0)
     die("用户已经存在");
 //mysqli_query($con,"INSERT INTO user(username,password) VALUES ('$username','$password')");
