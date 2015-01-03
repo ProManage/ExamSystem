@@ -24,3 +24,13 @@ Route::post('login', function(){
 			->with('error', "Invalid credentials");
 	}
 });
+Route::get('logout', function(){
+	Auth::logout();
+	return Redirect::to('/')
+		->with('message', 'You are now logged out');
+});
+Route::post('register','UsersController@create');
+
+Route::group(array('before'=>'auth'), function(){
+
+});

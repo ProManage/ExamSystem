@@ -61,7 +61,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                 <h4 class="modal-title">注册</h4>
             </div>
-            <form id="modal_register_form" role="form" method="post" action="./register.php">
+            <form id="modal_register_form" role="form" method="post" action="register">
                 <div class="modal-body">
                     <div class="form-group"><input type="text" class="form-control" name="username" placeholder="用户名">
                     </div>
