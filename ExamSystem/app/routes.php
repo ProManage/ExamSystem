@@ -15,3 +15,12 @@ Route::get('/', function()
 {
 	return View::make('homepage');
 });
+Route::post('login', function(){
+	if(Auth::attempt(Input::only('username', 'password'))) {
+		return Redirect::intended('/');
+	} else {
+		return Redirect::back()
+			->withInput()
+			->with('error', "Invalid credentials");
+	}
+});
