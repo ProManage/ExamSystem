@@ -38,15 +38,15 @@
                     </ul>
                 </li>
             </ul>
-            @if ( Auth::guest() )
+<!--            @if ( Auth::guest() )-->
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="" data-toggle="modal" data-target="#register_modal">注册</a></li>
                 <li><a href="" data-toggle="modal" data-target="#login_modal">登陆</a></li>
             </ul>
-            @else
-            Welcome, <strong>{{ HTML::link('admin', Auth::user()->username) }} </strong> |
-            {{ HTML::link('logout', 'Logout') }}
-            @endif
+<!--            @else-->
+<!--            Welcome, <strong>{{ HTML::link('admin', Auth::user()->username) }} </strong> |-->
+<!--            {{ HTML::link('logout', 'Logout') }}-->
+<!--            @endif-->
 
         </div><!--/.nav-collapse -->
     </div>
@@ -117,7 +117,7 @@
         </div>
     </div>
 </div>
-<script src="static/js/jquery-2.1.1.min.js"></script>
+<script src="static/js/jquery-2.1.3.min.js"></script>
 <script src="static/js/bootstrap.min.js"></script>
 </body>
 </html>
