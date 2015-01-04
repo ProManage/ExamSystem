@@ -11,14 +11,24 @@
 |
 */
 
-Route::get('/', function()
-{
-	return View::make('homepage');
+Route::filter('teacher_filter', function () {
+    if (Auth::guest()) {
+        return Redirect::to('home');
+    }
+    if (Auth::user()->role != 'teacher' && Auth::user()->is_admin == false) {
+        return Redirect::to('home');
+    }
 });
+Route::get('/', ['as' => 'home', function () {
+    return View::make('homepage');
+}]);
 Route::post('login', 'UsersController@login');
-Route::get('logout', 'UsersController@logout');
-Route::post('register','UsersController@create');
+Route::get('logout', ['as' => 'logout', 'uses' => 'UsersController@logout']);
+Route::post('register', 'UsersController@create');
 
-Route::group(array('before'=>'auth'), function(){
+Route::group(array('before' => 'auth'), function () {
+    Route::group(array('before' => 'teacher_filter'), function () {
+        Route::resource('questions', 'QuestionController');
 
+    });
 });

@@ -53,8 +53,8 @@
                     <li class="dropdown onhover-dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{Auth::user()->username}}<b class="caret"></b></a>
                         <ul class="dropdown-menu">
-                            <li><a href="/Profile/">我的账户</a></li>
-                            <li><a href="/Logout/" onclick="return ajax_logout()" data-no-instant="">注销</a></li>
+                            <li><a href="{">我的账户</a></li>
+                            <li><a href="{{URL::route('logout')}}" onclick="return ajax_logout()" data-no-instant="">注销</a></li>
                         </ul>
                     </li>
                 </div>
