@@ -25,3 +25,21 @@ exsysControllers.controller('createQuestionController', ['$scope', '$http', func
         $http.post('.',question);
     }
 }]);
+
+exsysControllers.controller('listQuestionController', ['$scope', '$http', function ($scope, $http) {
+    $scope.questions = [];
+    $http.get(".").success(function(data){
+        for (var i in data)
+        {
+            data[i].content = JSON.parse(data[i].content);
+            data[i].answer = JSON.parse(data[i].answer);
+        }
+        $scope.type_map ={
+            'choice':'选择题',
+            'filling':'填空题',
+            'saq':'简答题'
+        }
+        $scope.questions = data;
+    })
+
+}]);

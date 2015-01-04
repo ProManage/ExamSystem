@@ -1,0 +1,9 @@
+.choice-choice
+{
+    width: 50%;
+    float: left;
+}
+.choice-choice-correct
+{
+    font-weight: bold;
+}

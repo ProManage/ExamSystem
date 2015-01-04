@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <title>@yield('title')</title>
     <link href="{{URL::to('/static/css/bootstrap.css')}}" media="all" rel="stylesheet" type="text/css">
+    <link href="{{URL::to('/static/css/main.css')}}" media="all" rel="stylesheet" type="text/css">
     {{--    <link href="{{URL::to('/static/css/bootstrap-theme.css')}}" media="all" rel="stylesheet" type="text/css">--}}
     <style>
         body {

@@ -13,3 +13,7 @@ var exsys = angular.module('exsys', [
 //    $interpolateProvider.startSymbol('<%');
 //    $interpolateProvider.endSymbol('%>');
 //});
+
+exsys.config(['$httpProvider', function($httpProvider) {
+    $httpProvider.defaults.headers.common["X-Requested-With"] = 'XMLHttpRequest';
+}]);
