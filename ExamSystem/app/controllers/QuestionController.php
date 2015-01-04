@@ -9,7 +9,13 @@ class QuestionController extends \BaseController {
 	 */
 	public function index()
 	{
-		//
+		if (Request::ajax())
+		{
+			$questions = Question::all();
+			return $questions;
+		}
+		else
+			return View::make('question.index');
 	}
 
 
@@ -20,7 +26,7 @@ class QuestionController extends \BaseController {
 	 */
 	public function create()
 	{
-		//
+		return View::make('question.create');
 	}
 
 
@@ -43,7 +49,9 @@ class QuestionController extends \BaseController {
 	 */
 	public function show($id)
 	{
-		//
+		$question = Question::find($id);
+		if (Question::ajax())
+			return $question;
 	}
 
 

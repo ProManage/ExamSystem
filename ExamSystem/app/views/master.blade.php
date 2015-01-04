@@ -1,22 +1,36 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="exsys">
 <head>
     <meta charset="utf-8">
     <title>@yield('title')</title>
-    <link href="./static/css/bootstrap.css" media="all" rel="stylesheet" type="text/css">
+    <link href="{{URL::to('/static/css/bootstrap.css')}}" media="all" rel="stylesheet" type="text/css">
+    <link href="{{URL::to('/static/css/bootstrap-theme.css')}}" media="all" rel="stylesheet" type="text/css">
     <style>
-        body{
-            padding-top: 50px;
+        body {
+            padding-top: 70px;
+        }
+        li {
+            list-style-type: none;
+        }
+        ul,ol{
+            padding:0;
         }
     </style>
+    <script src="{{URL::to('/static/js/jquery-2.1.3.min.js')}}"></script>
+    <script src="{{URL::to('/static/js/bootstrap.min.js')}}"></script>
+    <script src="{{URL::to('/static/js/angular.js')}}"></script>
+    <script src="{{URL::to('/static/js/app.js')}}"></script>
+    <script src="{{URL::to('/static/js/controller.js')}}"></script>
     @yield('head')
+
 </head>
 <body>
 
 <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
     <div class="container">
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                    aria-expanded="false" aria-controls="navbar">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
@@ -51,21 +65,22 @@
                 <div class="navbar-right  hidden-xs nav navbar-nav">
 
                     <li class="dropdown onhover-dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{Auth::user()->username}}<b class="caret"></b></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{Auth::user()->username}}<b
+                                    class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li><a href="{">我的账户</a></li>
-                            <li><a href="{{URL::route('logout')}}" onclick="return ajax_logout()" data-no-instant="">注销</a></li>
+                            <li><a href="{{URL::route('logout')}}" onclick="return ajax_logout()"
+                                   data-no-instant="">注销</a></li>
                         </ul>
                     </li>
                 </div>
             @endif
-        </div><!--/.nav-collapse -->
+        </div>
+        <!--/.nav-collapse -->
     </div>
 </nav>
 @yield('content')
-<script src="static/js/jquery-2.1.3.min.js"></script>
-<script src="static/js/bootstrap.min.js"></script>
-<script src="static/js/angular.js"></script>
+
 @yield('extra_script')
 </body>
 </html>
