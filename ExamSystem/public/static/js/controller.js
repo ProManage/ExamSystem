@@ -22,7 +22,9 @@ exsysControllers.controller('createQuestionController', ['$scope', '$http', func
             'difficulty':$scope.question.difficulty,
             'labels':$scope.question.labels
         };
-        $http.post('.',question);
+        $http.post('.',question).success(function(){
+            window.location.href = "../questions/"
+        });
     }
 }]);
 

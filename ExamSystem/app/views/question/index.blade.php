@@ -10,7 +10,6 @@
                     <div class="panel-body">
                         <div ng-switch-when="choice">
                             <p>@{{ question.content.description }}</p>
-
                             <div class="clearfix">
                                 <div class="choice-choice" ng-repeat="choice in ['A','B','C','D']"
                                      ng-class="{true:'choice-choice-correct',false:''}[question.answer == choice]">
@@ -19,10 +18,12 @@
                             </div>
                         </div>
                         <div ng-switch-when="filling">
-
+                            <p>@{{ question.content.description }}</p>
+                            <p><b>答案:</b> @{{ question.answer }}</p>
                         </div>
                         <div ng-switch-when="saq">
-
+                            <p>@{{ question.content.description }}</p>
+                            <p><b>关键词:</b> @{{ question.answer }}</p>
                         </div>
                     </div>
                 </div>
