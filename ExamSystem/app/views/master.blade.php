@@ -28,7 +28,7 @@
 
 </head>
 <body>
-
+<input type="hidden" ng-model="root_url" value="{{URL::to('/')}}">
 <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
     <div class="container">
         <div class="navbar-header">
@@ -39,11 +39,13 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">ExSys</a>
+            <a class="navbar-brand" href="{{URL::to('/')}}">ExSys</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Home</a></li>
+                @if ( Auth::check()  && Auth::user() -> role == 'teacher' )
+                    <li><a href="{{URL::to('/questions/')}}">试题列表</a></li>
+                @endif
                 <li><a href="#about">About</a></li>
                 <li><a href="#contact">Contact</a></li>
                 <li class="dropdown">
