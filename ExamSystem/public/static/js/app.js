@@ -8,8 +8,8 @@ var exsys = angular.module('exsys', [
     //'globel',
     //'serverRes',
     //'workxfilter'
-])
-exsys.config(function($interpolateProvider) {
-    $interpolateProvider.startSymbol('<%');
-    $interpolateProvider.endSymbol('%>');
-});
+]);
+//exsys.config(function($interpolateProvider) {
+//    $interpolateProvider.startSymbol('<%');
+//    $interpolateProvider.endSymbol('%>');
+//});

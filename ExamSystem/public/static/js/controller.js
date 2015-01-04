@@ -14,8 +14,6 @@ exsysControllers.controller('createQuestionController', ['$scope', '$http', func
         'labels':""
     };
     $scope.question.type = 'choice';
-    $scope.question.choice.answer = "请指定正确答案";
-
     $scope.submit_question = function ($event) {
         var question  = {
             'type':$scope.question.type,
