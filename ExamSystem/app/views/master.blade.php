@@ -4,16 +4,18 @@
     <meta charset="utf-8">
     <title>@yield('title')</title>
     <link href="{{URL::to('/static/css/bootstrap.css')}}" media="all" rel="stylesheet" type="text/css">
-    <link href="{{URL::to('/static/css/bootstrap-theme.css')}}" media="all" rel="stylesheet" type="text/css">
+    {{--    <link href="{{URL::to('/static/css/bootstrap-theme.css')}}" media="all" rel="stylesheet" type="text/css">--}}
     <style>
         body {
             padding-top: 70px;
         }
+
         li {
             list-style-type: none;
         }
-        ul,ol{
-            padding:0;
+
+        ul, ol {
+            padding: 0;
         }
     </style>
     <script src="{{URL::to('/static/js/jquery-2.1.3.min.js')}}"></script>

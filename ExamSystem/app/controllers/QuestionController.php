@@ -37,7 +37,13 @@ class QuestionController extends \BaseController {
 	 */
 	public function store()
 	{
-		//
+		$input = Input::all();
+		$data = Input::only(['type','content','answer','difficulty','labels']);
+		$data['content'] = json_encode($data['content']);
+		$data['answer'] = json_encode($data['answer']);
+		$new_question  = Question::create($data);
+
+
 	}
 
 

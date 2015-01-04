@@ -34,14 +34,14 @@
                     <form id="question-choice">
                         <div class="form-group">
                             <label>题目描述</label>
-                            <textarea class="form-control"  rows="5" ng-model="question.choice.content"></textarea>
+                            <textarea class="form-control"  rows="5" ng-model="question.choice.description" style="resize: none; "></textarea>
                         </div>
-                        <div class="form-group choice clearfix" ng-repeat="choice in ['A','B','C','D']">
-                            <label class="control-label"><input class=""  type="radio" ng-model="question.choice.answer" ng-value="choice"><%choice%>.</label>
+                        <div class="form-group choice" ng-repeat="choice in ['A','B','C','D']">
+                            <label class="control-label"><input class=""  type="radio" ng-model="question.answer.choice" ng-value="choice"><%choice%>.</label>
                             <div class="choice_content"><input  class="form-control" type="text" ng-model="question.choice.choices[choice]"></div>
                         </div>
                     </form>
-                    <p><label>答案:<% question.choice.answer %>.<% question.choice.choices[question.choice.answer] %> </label></p>
+                    <p><label>答案:<% question.answer.choice %>.<% question.choice.choices[question.answer.choice] %> </label></p>
                 </li>
                 <li  ng-switch-when="filling">
 
@@ -50,8 +50,8 @@
 
                 </li>
             </ul>
+            <button class="btn btn-primary btn-lg" ng-click="submit_question($event)">提交</button>
         </div>
-
     </div>
 
 @stop
