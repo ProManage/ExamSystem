@@ -15,20 +15,8 @@ Route::get('/', function()
 {
 	return View::make('homepage');
 });
-Route::post('login', function(){
-	if(Auth::attempt(Input::only('username', 'password'))) {
-		return Redirect::intended('/');
-	} else {
-		return Redirect::back()
-			->withInput()
-			->with('error', "Invalid credentials");
-	}
-});
-Route::get('logout', function(){
-	Auth::logout();
-	return Redirect::to('/')
-		->with('message', 'You are now logged out');
-});
+Route::post('login', 'UsersController@login');
+Route::get('logout', 'UsersController@logout');
 Route::post('register','UsersController@create');
 
 Route::group(array('before'=>'auth'), function(){
