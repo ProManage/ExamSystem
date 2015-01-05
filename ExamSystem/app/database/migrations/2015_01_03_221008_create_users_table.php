@@ -20,7 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('password', 80);
             $table->string('role', 10)->default('student');
             $table->string('student_id', 20)->nullable();
-            $table->string('remember_token', 100);
+            $table->string('remember_token', 100)->nullable();
             $table->boolean('is_admin')->default(false);
             $table->timestamps();
             $table->unique('username');
