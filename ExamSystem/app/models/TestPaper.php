@@ -8,5 +8,5 @@
 class TestPaper extends Eloquent
 {
     protected $table = 'testpapers';
-    protected $fillable = ['creater','start_time','end_time'];
+    protected $fillable = ['creater','name','start_time','end_time'];
 }

@@ -31,5 +31,12 @@ class QuestionTableSeeder extends Seeder
             'difficulty' => 4,
             'labels' => 'C++,常量'
         ));
+        Question::create(array(
+            'type' => 'choice',
+            'content' => '{"choices":{"A":"_123","B":"go_to","C":"long1","D":"void"},"description":"1.\u4e0b\u5217\u4e00\u4e2a\u4e0d\u5408\u6cd5\u7684\u53d8\u91cf\u540d\u662f\uff08 \uff09"}',
+            'answer' => '"D"',
+            'difficulty' => 4,
+            'labels' => 'C++,C++关键字'
+        ));
     }
 }

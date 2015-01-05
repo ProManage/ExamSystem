@@ -15,7 +15,8 @@ class CreateTestpapersTable extends Migration {
 		Schema::create('testpapers', function(Blueprint $table)
 		{
 			$table->increments('id');
-			$table->integer('creater');
+			$table->string('creater',30);
+			$table->string('name',100);
 			$table->dateTime('start_time');
 			$table->dateTime('end_time');
 			$table->timestamps();

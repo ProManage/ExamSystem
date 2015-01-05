@@ -66,7 +66,7 @@ exsysControllers.controller('selectQuestionController', ['$rootScope', '$scope',
         for (var i in qids)
             $rootScope.$broadcast('selected_questions_changed', qids[i], false);
     }
-    $scope.collapse = true
+    $scope.collapse = false
     $scope.toggle_collapse = function () {
         $scope.collapse = !$scope.collapse;
     };
@@ -74,6 +74,7 @@ exsysControllers.controller('selectQuestionController', ['$rootScope', '$scope',
 exsysControllers.controller('createTestPaperController', ['$rootScope', '$scope', '$http', function ($rootScope, $scope, $http) {
     //$scope.qid_question_map = {};
     $scope.questions = [];
+    $scope.testpaper = {};
     $http.get($rootScope.root_url + "/questions").success(function (data) {
         var questions = [];
         for (var i in data) {
@@ -93,6 +94,22 @@ exsysControllers.controller('createTestPaperController', ['$rootScope', '$scope'
         });
         $scope.questions = questions;
     });
+    $scope.submit_testpaper = function ($event) {
+        $scope.testpaper.questions = [];
+        var questions = $scope.testpaper.questions;
+        for (var i in $scope.questions) {
+            var question = $scope.questions[i];
+            questions.push({
+                'question_id': question.id,
+                'placement': i,
+                'value': question.value
+            });
+        }
+        var data
+        $http.post($rootScope.root_url + "/testpapers",  $scope.testpaper).success(function () {
+            window.location.href = $rootScope.root_url + "/testpapers"
+        });
+    };
 
 
 }]);
