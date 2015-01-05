@@ -31,8 +31,6 @@ exsysControllers.controller('createQuestionController', ['$scope', '$http', func
 exsysControllers.controller('listQuestionController', ['$rootScope', '$scope', '$http', function ($rootScope, $scope, $http) {
     $scope.questions = [];
     $scope.qid_question_map = {}
-    console.log($scope);
-    aaa = $scope;
     $http.get("").success(function (data) {
         for (var i in data) {
             data[i].content = JSON.parse(data[i].content);
@@ -40,13 +38,13 @@ exsysControllers.controller('listQuestionController', ['$rootScope', '$scope', '
             data[i].selected = $rootScope.selected_questions[data[i].id];
             $scope.qid_question_map[data[i].id] = data[i];
         }
-        $scope.type_map = {
-            'choice': '选择题',
-            'filling': '填空题',
-            'saq': '简答题'
-        };
         $scope.questions = data;
-    })
+    });
+    $scope.type_map = {
+        'choice': '选择题',
+        'filling': '填空题',
+        'saq': '简答题'
+    };
     $scope.selected_changed = function ($event, question) {
         $rootScope.$broadcast('selected_questions_changed', question.id, question.selected);
     }
@@ -61,12 +59,40 @@ exsysControllers.controller('selectQuestionController', ['$rootScope', '$scope',
         }
         return true;
     }
-    $scope.clear_selected = function()
-    {
+    $scope.clear_selected = function () {
         var qids = [];
         for (var key in $rootScope.selected_questions)
             qids.push(key);
         for (var i in qids)
-            $rootScope.$broadcast('selected_questions_changed',qids[i],false);
+            $rootScope.$broadcast('selected_questions_changed', qids[i], false);
     }
+    $scope.collapse = true
+    $scope.toggle_collapse = function () {
+        $scope.collapse = !$scope.collapse;
+    };
+}]);
+exsysControllers.controller('createTestPaperController', ['$rootScope', '$scope', '$http', function ($rootScope, $scope, $http) {
+    //$scope.qid_question_map = {};
+    $scope.questions = [];
+    $http.get($rootScope.root_url + "/questions").success(function (data) {
+        var questions = [];
+        for (var i in data) {
+            data[i].content = JSON.parse(data[i].content);
+            data[i].answer = JSON.parse(data[i].answer);
+            data[i].selected = $rootScope.selected_questions[data[i].id];
+            data[i].value = 2;
+            if (data[i].selected) {
+                questions.push(data[i]);
+            }
+        }
+        questions.sort(function (a, b) {
+            if (a.type != b.type)
+                return "choicefillingsaq".indexOf(a.type) - "choicefillingsaq".indexOf(b.type)
+            else
+                return a.id - b.id;
+        });
+        $scope.questions = questions;
+    });
+
+
 }]);

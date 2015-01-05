@@ -32,6 +32,6 @@ Route::post('register', 'UsersController@create');
 Route::group(array('before' => 'auth'), function () {
     Route::group(array('before' => 'teacher_filter'), function () {
         Route::resource('questions', 'QuestionController');
-
+        Route::resource('testpapers','TestPaperController');
     });
 });

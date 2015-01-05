@@ -2,7 +2,7 @@
 <html ng-app="exsys">
 <head>
     <meta charset="utf-8">
-    <title>@yield('title')</title>
+    <title>@yield('title') - ExSys</title>
     <link href="{{URL::to('/static/css/bootstrap.css')}}" media="all" rel="stylesheet" type="text/css">
     <link href="{{URL::to('/static/css/main.css')}}" media="all" rel="stylesheet" type="text/css">
     {{--    <link href="{{URL::to('/static/css/bootstrap-theme.css')}}" media="all" rel="stylesheet" type="text/css">--}}
@@ -29,7 +29,7 @@
 
 </head>
 <body>
-<input type="hidden" ng-model="root_url" value="{{URL::to('/')}}">
+<input type="hidden" ng-init="root_url='{{URL::to('/')}}'">
 <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
     <div class="container">
         <div class="navbar-header">

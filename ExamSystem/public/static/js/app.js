@@ -34,6 +34,6 @@ exsys.run(["$rootScope", '$http', function ($rootScope, $http) {
     });
     $rootScope.$watch('selected_questions', function() {
         localStorage['selected_questions'] = JSON.stringify($rootScope.selected_questions);
-        console.log('$watch : selected_questions changed');
+        //console.log('$watch : selected_questions changed');
     },true);
 }]);
