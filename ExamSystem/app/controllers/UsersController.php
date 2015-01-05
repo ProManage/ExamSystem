@@ -21,7 +21,7 @@ class UsersController extends \BaseController
      */
     public function create()
     {
-        $data = Input::only(['username', 'email', 'password']);
+        $data = Input::only(['username', 'email', 'password','student_id']);
         $data['password'] = Hash::make($data['password']);
         $newUser = User::create($data);
         if ($newUser) {

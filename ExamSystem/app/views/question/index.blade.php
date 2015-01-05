@@ -27,7 +27,6 @@
                         </div>
                     </div>
                 </div>
-
             </li>
         </ul>
     </div>
