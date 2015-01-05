@@ -7,3 +7,24 @@
 {
     font-weight: bold;
 }
+#selected_questions_fixed
+{
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    height: 90px;
+    width: 60%;
+
+}
+#selected_questions_fixed{
+    -webkit-transition:all linear 0.5s;
+    transition:all linear 0.5s;
+}
+#selected_questions_fixed.ng-hide
+{
+    left: -60%;
+}
+#selected_questions_fixed .selectd_question
+{
+    margin: 0 10px 0 10px;
+}

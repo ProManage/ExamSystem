@@ -22,6 +22,7 @@
     <script src="{{URL::to('/static/js/jquery-2.1.3.min.js')}}"></script>
     <script src="{{URL::to('/static/js/bootstrap.min.js')}}"></script>
     <script src="{{URL::to('/static/js/angular.js')}}"></script>
+    <script src="{{URL::to('/static/js/angular-animate.js')}}"></script>
     <script src="{{URL::to('/static/js/app.js')}}"></script>
     <script src="{{URL::to('/static/js/controller.js')}}"></script>
     @yield('head')
