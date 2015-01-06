@@ -24,7 +24,10 @@
                             <div ng-class="{true:'glyphicon glyphicon-star',false:'glyphicon glyphicon-star-empty'}[question.difficulty >= 4]"></div>
                             <div ng-class="{true:'glyphicon glyphicon-star',false:'glyphicon glyphicon-star-empty'}[question.difficulty >= 5]"></div>
                         </b>
-                        <span class="pull-right">@{{ question.labels }}</span>
+                        <div class="pull-right" ng-click="delete_question(question)">
+                            <span class="glyphicon glyphicon-remove-circle"></span>
+                        </div>
+                        <span class="pull-right" style="margin-right: 15px;">@{{ question.labels }}</span>
                     </div>
                     <div class="panel-body">
                         @include('question.question_and_answer_body')
