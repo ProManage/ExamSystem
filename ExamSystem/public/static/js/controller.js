@@ -169,3 +169,33 @@ exsysControllers.controller('testController', ['$rootScope', '$scope', '$http', 
             });
     }
 }]);
+
+exsysControllers.controller('gradingController', ['$rootScope', '$scope', '$http', function ($rootScope, $scope, $http) {
+    $scope.full_score = 0;
+    $http.get("").success(function (data) {
+        var qs = data.questions;
+        for (var i in qs) {
+            qs[i].content = JSON.parse(qs[i].content);
+            qs[i].answer = JSON.parse(qs[i].answer);
+            qs[i].correct_answer = JSON.parse(qs[i].correct_answer);
+            $scope.full_score += qs[i].value;
+        }
+        $scope.questions = qs;
+        $scope.testinfo = data.testinfo;
+        $scope.examinee = data.examinee;
+    });
+    $scope.total_score = function(){
+        var score = 0;
+        for (var i in $scope.questions)
+            score += $scope.questions[i].score;
+        return score;
+    }
+    $scope.auto_mark = function(){
+        for (var i in $scope.questions)
+        {
+            var q = $scope.questions[i];
+            q.score = q.value * (q.correct_answer == q.answer)
+        }
+
+    }
+}]);

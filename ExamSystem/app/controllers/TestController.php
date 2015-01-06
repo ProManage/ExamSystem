@@ -1,5 +1,6 @@
 <?php
 
+//学生对答卷的操作
 class TestController extends \BaseController
 {
 
@@ -114,6 +115,9 @@ class TestController extends \BaseController
 
     public  function answer($id)
     {
+        $test = TestPaper::find($id);
+        if (time() > $test->end_time || time() < $test.start_time)
+            return "not right time";
         $data = Input::all();
         foreach($data as $answer)
         {

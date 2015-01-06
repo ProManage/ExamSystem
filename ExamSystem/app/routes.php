@@ -34,6 +34,9 @@ Route::group(array('before' => 'auth'), function () {
     Route::group(array('before' => 'teacher_filter'), function () {
         Route::resource('questions', 'QuestionController');
         Route::resource('testpapers','TestPaperController');
+        Route::get('/testpapers/{testpapers}/grading/','TestGradingController@index');
+        Route::get('/testpapers/{testpapers}/grading/{username}','TestGradingController@show');
+        Route::post('/testpapers/{testpapers}/grading/{username}','TestGradingController@store');
     });
     Route::resource('tests','TestController');
     Route::resource("users",'UserController');

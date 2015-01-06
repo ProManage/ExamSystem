@@ -68,3 +68,27 @@
 .question-li.ng-leave-active {
     opacity: 0;
 }
+
+#student_id_label span
+{
+    display: none;
+}
+#student_id_label:hover span
+{
+    display: inline-block;
+}
+/*grading tools*/
+#grading_tool
+{
+    position: fixed;
+    width: 110px;
+    top :100px;
+    left: -10px;
+    padding-left: 15px;
+    padding-top: 15px;
+    padding-bottom: 10px;
+}
+#grading_tool .btn
+{
+    margin-bottom: 10px;
+}
