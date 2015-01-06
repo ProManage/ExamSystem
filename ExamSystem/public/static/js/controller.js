@@ -2,7 +2,7 @@
  * Created by Comzyh on 2015/1/4.
  */
 var exsysControllers = angular.module('exsysControllers', []);
-exsysControllers.controller('createQuestionController', ['$scope', '$http', function ($scope, $http) {
+exsysControllers.controller('QuestionController', ['$scope', '$http', function ($scope, $http) {
     $scope.question = {
         'choice': {
             'choices': {}
@@ -13,7 +13,21 @@ exsysControllers.controller('createQuestionController', ['$scope', '$http', func
         'difficulty': 1,
         'labels': ""
     };
-    $scope.question.type = 'choice';
+    if ($scope.operate == 'create') {
+        $scope.question.type = 'choice';
+    }
+    else {
+        $scope.question.id = $("#question_id").val();
+        $http.get($scope.root_url + "/questions/" + $scope.question.id).success(function (data) {
+            var question  =$scope.question ;
+            question.type = data.type;
+            question.answer[data.type] = JSON.parse(data.answer);
+            question.labels = data.lables;
+            question.difficulty = data.difficulty;
+            question[data.type] = JSON.parse(data.content);
+        });
+    }
+
     $scope.submit_question = function ($event) {
         var question = {
             'type': $scope.question.type,
@@ -110,11 +124,6 @@ exsysControllers.controller('createTestPaperController', ['$rootScope', '$scope'
             window.location.href = $rootScope.root_url + "/testpapers"
         });
     };
-}]);
-exsysControllers.controller('listTestPaperController', ['$rootScope', '$scope', '$http', function ($rootScope, $scope, $http) {
-    $http.get($rootScope.root_url + '/testpapers').success(function (data) {
-        $scope.testpapers = data;
-    });
 }]);
 
 exsysControllers.controller('testController', ['$rootScope', '$scope', '$http', function ($rootScope, $scope, $http) {

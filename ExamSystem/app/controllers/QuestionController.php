@@ -56,7 +56,7 @@ class QuestionController extends \BaseController {
 	public function show($id)
 	{
 		$question = Question::find($id);
-		if (Question::ajax())
+		if (Request::ajax())
 			return $question;
 	}
 
@@ -69,7 +69,10 @@ class QuestionController extends \BaseController {
 	 */
 	public function edit($id)
 	{
-		//
+		return View::make('question.create',[
+			'question_id' => $id,
+			'edit' => true
+		]);
 	}
 
 
