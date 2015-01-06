@@ -10,9 +10,12 @@ class TestPaperController extends \BaseController
      */
     public function index()
     {
+        $testpapers = TestPaper::all();
         if (Request::ajax())
-            return TestPaper::all();
-        return View::make('testpaper.index');
+            return $testpapers;
+        return View::make('testpaper.index',[
+            'testpapers' => $testpapers
+        ]) ;
     }
 
 

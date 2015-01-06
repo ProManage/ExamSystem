@@ -2,7 +2,7 @@
 @section('title')试卷列表@stop
 @section('content')
     <div class="container">
-        <div ng-controller="listTestPaperController">
+        <div>
             <table class="table">
                 <thead>
                     <th>考试名称</th>
@@ -11,12 +11,14 @@
                     <th>创建人</th>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="test in testpapers">
-                        <td>@{{ test.name }}</td>
-                        <td>@{{ test.start_time }}</td>
-                        <td>@{{ test.end_time }}</td>
-                        <td>@{{ test.creater }}</td>
+                @foreach ($testpapers as $test)
+                    <tr>
+                        <td><a href="{{URL::to('/testpapers') .'/'. $test->id}}">{{ $test->name }}</a></td>
+                        <td>{{ $test->start_time }}</td>
+                        <td>{{ $test->end_time }}</td>
+                        <td>{{ $test->creater }}</td>
                     </tr>
+                @endforeach
                 </tbody>
             </table>
         </div>

@@ -39,11 +39,32 @@
 #selected_questions_fixed .panel-heading .btn-xs {
     margin-top: -3px;
 }
-#selected_questions_fixed .panel-heading a
-{
+
+#selected_questions_fixed .panel-heading a {
     margin-left: 10px;
 }
+
 .panel-heading input[type="number"] {
     /*margin-top: -3px;*/
     /*margin-bottom: -6px;*/
+}
+
+.form-inline.form-bottom-margin {
+    margin-bottom: 10px;
+}
+
+.question-li.ng-enter,
+.question-li.ng-leave,
+.question-li.ng-move {
+    -webkit-transition: 0.2s linear all;
+    -moz-transition: 0.2s linear all;
+    -o-transition: 0.2s linear all;
+    transition: 0.2s linear all;
+}
+.question-li.ng-leave {
+    opacity: 1;
+    z-index: 0;
+}
+.question-li.ng-leave-active {
+    opacity: 0;
 }
