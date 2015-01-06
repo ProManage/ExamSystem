@@ -22,12 +22,8 @@
 @stop
 @section('content')
     <div class="container">
-        @if (!$edit)
-        <div ng-controller="QuestionController" ng-init="operate='create'">
-        @else
-        <div ng-controller="QuestionController" ng-init="operate='edit';question_id={{$question_id}}">
+        <div ng-controller="QuestionController" ng-init="operate='{{$operate}}'">
             <input id='question_id'type="hidden" value="{{$question_id}}">
-        @endif
             <ul id="type_tab"class="nav nav-tabs" role="tablist">
                 <li role="presentation" ng-class="{true:'active',false:''}[question.type=='choice']"><a href="" ng-click="question.type='choice'">选择题</a></li>
                 <li role="presentation" ng-class="{true:'active',false:''}[question.type=='filling']"><a href="" ng-click="question.type='filling'">填空题</a></li>
@@ -82,5 +78,7 @@
             <button class="btn btn-primary btn-lg" ng-click="submit_question($event)">提交</button>
         </div>
     </div>
+    {{ Form::open(array('route' => array('questions.update', $question_id), 'method' => 'put')) }}
+    {{ Form::close() }}
 
 @stop

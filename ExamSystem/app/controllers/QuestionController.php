@@ -26,7 +26,9 @@ class QuestionController extends \BaseController {
 	 */
 	public function create()
 	{
-		return View::make('question.create');
+		return View::make('question.create',[
+			'operate' => 'create'
+		]);
 	}
 
 
@@ -71,7 +73,7 @@ class QuestionController extends \BaseController {
 	{
 		return View::make('question.create',[
 			'question_id' => $id,
-			'edit' => true
+			'operate' => 'edit'
 		]);
 	}
 
@@ -84,7 +86,14 @@ class QuestionController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		//
+		$question  = Question::find($id);
+		$data = Input::all();
+		$question -> type = $data['type'];
+		$question -> content = json_encode($data['content']);
+		$question -> answer = json_encode($data['answer']);
+		$question -> difficulty = $data['difficulty'];
+		$question -> labels = $data['labels'];
+		$question -> save();
 	}
 
 

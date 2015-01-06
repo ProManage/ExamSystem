@@ -19,10 +19,10 @@ exsysControllers.controller('QuestionController', ['$scope', '$http', function (
     else {
         $scope.question.id = $("#question_id").val();
         $http.get($scope.root_url + "/questions/" + $scope.question.id).success(function (data) {
-            var question  =$scope.question ;
+            var question = $scope.question;
             question.type = data.type;
             question.answer[data.type] = JSON.parse(data.answer);
-            question.labels = data.lables;
+            question.labels = data.labels;
             question.difficulty = data.difficulty;
             question[data.type] = JSON.parse(data.content);
         });
@@ -34,11 +34,18 @@ exsysControllers.controller('QuestionController', ['$scope', '$http', function (
             'content': $scope.question[$scope.question.type],
             'answer': $scope.question.answer[$scope.question.type],
             'difficulty': $scope.question.difficulty,
-            'labels': $scope.question.labels
+            'labels': $scope.question.labels || ""
         };
-        $http.post('.', question).success(function () {
-            window.location.href = "../questions/"
-        });
+        if ($scope.operate == 'create') {
+            $http.post('.', question).success(function () {
+                window.location.href = $scope.root_url + "/questions/"
+            });
+        } else {
+            question.id = $scope.question.id;
+            $http.put('.', question).success(function () {
+                window.location.href = $scope.root_url + "/questions/"
+            });
+        }
     }
 }]);
 

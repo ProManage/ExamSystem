@@ -54,6 +54,7 @@ class TestController extends \BaseController {
 			{
 				$question = Question::find($tq->question_id);
 				$questions[] = [
+					'tqid' => $tq->id,
 					'type' => $question->type,
 					'content' => $question->content,
 					'value' => $tq->value,
