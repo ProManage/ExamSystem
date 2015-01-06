@@ -22,12 +22,13 @@ Route::filter('teacher_filter', function () {
 Route::get('/', ['as' => 'home', function () {
     return View::make('homepage');
 }]);
+
 Route::get('login', ['as' => 'login',function(){
     return View::make('user.login');
 }]);
-Route::post('login', 'UsersController@login');
-Route::get('logout', ['as' => 'logout', 'uses' => 'UsersController@logout']);
-Route::post('register', 'UsersController@create');
+Route::post('login', 'UserController@login');
+Route::get('logout', ['as' => 'logout', 'uses' => 'UserController@logout']);
+Route::post('register', 'UserController@store');
 
 Route::group(array('before' => 'auth'), function () {
     Route::group(array('before' => 'teacher_filter'), function () {
@@ -35,4 +36,5 @@ Route::group(array('before' => 'auth'), function () {
         Route::resource('testpapers','TestPaperController');
     });
     Route::resource('tests','TestController');
+    Route::resource("users",'UserController');
 });

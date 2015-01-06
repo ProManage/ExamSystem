@@ -1,6 +1,6 @@
 <?php
 
-class UsersController extends \BaseController
+class UserController extends \BaseController
 {
 
     /**
@@ -21,15 +21,7 @@ class UsersController extends \BaseController
      */
     public function create()
     {
-        $data = Input::only(['username', 'email', 'password','student_id']);
-        $data['password'] = Hash::make($data['password']);
-        $newUser = User::create($data);
-        if ($newUser) {
-            Auth::login($newUser);
-            return Redirect::intended('/');
-        }
-
-        return Redirect::route('user.create')->withInput();
+        //
     }
 
 
@@ -40,7 +32,14 @@ class UsersController extends \BaseController
      */
     public function store()
     {
-        //
+        $data = Input::only(['username', 'email', 'password']);
+        $data['password'] = Hash::make($data['password']);
+        $newUser = User::create($data);
+        if ($newUser) {
+            Auth::login($newUser);
+            return Redirect::intended('/');
+        }
+        return Redirect::route('user.create')->withInput();
     }
 
 
@@ -52,7 +51,13 @@ class UsersController extends \BaseController
      */
     public function show($id)
     {
-        //
+        $user = User::find($id);
+		if (Request::ajax())
+			return $user;
+        else
+            return View::make('user.showinfo',[
+                'user' => $user
+            ]);
     }
 
 
@@ -76,7 +81,11 @@ class UsersController extends \BaseController
      */
     public function update($id)
     {
-        //
+        $data = Input::only(['email']);
+		$user = User::find($id) -> first();
+		$user -> email = $data['email'];
+		$user -> save();
+        return Redirect::route('users.show', array($user->id));;
     }
 
 
@@ -101,7 +110,7 @@ class UsersController extends \BaseController
                 ->with('error', "Invalid credentials");
         }
     }
-    public  function logout()
+    public function logout()
     {
         Auth::logout();
         return Redirect::to('/')

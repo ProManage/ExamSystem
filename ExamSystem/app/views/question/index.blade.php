@@ -14,10 +14,17 @@
             <li class="question-li" ng-repeat="question in questions | filter:keywords" ng-switch on="question.type">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <b>@{{ question.id }}.</b> @{{ type_map[question.type] }} 难度:<b>@{{ question.difficulty }}</b>
-                        <input type="checkbox" ng-model="question.selected"
-                               ng-change="selected_changed($event,question)">
-                        <span class="pull-right">@{{ question.labels }}</span></div>
+						<b>@{{ question.id }}.</b>
+						@{{ type_map[question.type] }} 难度:
+						<b>
+							<div ng-class="{3: 'glyphicon glyphicon-star', 1: 'glyphicon glyphicon-star-empty'}[ @{{ question.difficulty }} ]">
+							</div>
+							@{{ question.difficulty }}
+						</b> 
+						<span class="pull-right">
+							@{{ question.labels }}
+						</span>
+					</div>
                     <div class="panel-body">
                         @include('question.question_and_answer_body')
                     </div>
