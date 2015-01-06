@@ -135,9 +135,36 @@ exsysControllers.controller('createTestPaperController', ['$rootScope', '$scope'
 
 exsysControllers.controller('testController', ['$rootScope', '$scope', '$http', function ($rootScope, $scope, $http) {
     $http.get("").success(function (data) {
-        $scope.questions = data;
-        for (var i in data) {
-            data[i].content = JSON.parse(data[i].content);
+        var qs = data.questions;
+        for (var i in qs) {
+            qs[i].content = JSON.parse(qs[i].content);
+            qs[i].last_answer = qs[i].answer;
         }
+        $scope.questions = qs;
+        $scope.testinfo = data.testinfo;
     });
+    $scope.update_answer = function (questions) {
+        var data = [];
+        var put_question = function (question) {
+            if (question.last_answer == question.answer)
+                return;
+            question.last_answer = question.answer;
+            data.push({
+                'tqid': question.tqid,
+                'answer': JSON.stringify(question.answer)
+            });
+            question.submiting = true;
+        }
+        if (questions instanceof Array) {
+            for (var i in questions)
+                put_question(questions[i]);
+        }
+        else
+            put_question(questions);
+        if (data.length != 0)
+            $http.put($rootScope.root_url + '/tests/' + $scope.testinfo.id + '/answers', data).success(function () {
+                for (var i in questions)
+                    questions[i].submiting = false;
+            });
+    }
 }]);

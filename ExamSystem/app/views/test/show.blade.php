@@ -15,7 +15,7 @@
 
                             <div class="choice-choice" ng-repeat="choice in ['A','B','C','D']">
                                 <div class="choice_content">
-                                    <b><input type="radio" ng-model="question.answer"
+                                    <b><input type="radio" ng-model="question.answer" ng-change="update_answer(question)"
                                                                         ng-value="choice">@{{choice}}.</b>
                                     @{{ question.content.choices[choice] }}
                                 </div>
@@ -23,11 +23,11 @@
                         </div>
                         <div ng-switch-when="filling">
                             <p class="question-desc">@{{ question.content.description }}</p>
-                            <input class="form-control" type="text" ng-model="question.answer" placeholder="答案">
+                            <input class="form-control" type="text" ng-model="question.answer" placeholder="答案" ng-blur="update_answer(question)">
                         </div>
                         <div ng-switch-when="saq">
                             <p class="question-desc">@{{ question.content.description }}</p>
-                            <textarea class="form-control" rows="5" ng-model="question.answer" style="resize: none; "></textarea>
+                            <textarea class="form-control" rows="5" ng-model="question.answer" style="resize: none; " ng-blur="update_answer(question)"></textarea>
                         </div>
                     </div>
                 </div>

@@ -37,4 +37,5 @@ Route::group(array('before' => 'auth'), function () {
     });
     Route::resource('tests','TestController');
     Route::resource("users",'UserController');
+    Route::put('/tests/{tests}/answers',"TestController@answer");
 });
