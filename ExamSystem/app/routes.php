@@ -34,4 +34,5 @@ Route::group(array('before' => 'auth'), function () {
         Route::resource('questions', 'QuestionController');
         Route::resource('testpapers','TestPaperController');
     });
+    Route::resource('tests','TestController');
 });

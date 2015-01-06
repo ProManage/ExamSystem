@@ -57,7 +57,7 @@
                         </div>
                         <div class="form-group">
                             <label>答案:</label>
-                            <input class="form-control" ng-model="question.answer.filling">
+                            <input class="form-control" type="text" ng-model="question.answer.filling">
                         </div>
                     </form>
                 </li>

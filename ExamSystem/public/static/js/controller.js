@@ -116,3 +116,12 @@ exsysControllers.controller('listTestPaperController', ['$rootScope', '$scope', 
         $scope.testpapers = data;
     });
 }]);
+
+exsysControllers.controller('testController', ['$rootScope', '$scope', '$http', function ($rootScope, $scope, $http) {
+    $http.get("").success(function (data) {
+        $scope.questions = data;
+        for (var i in data) {
+            data[i].content = JSON.parse(data[i].content);
+        }
+    });
+}]);
