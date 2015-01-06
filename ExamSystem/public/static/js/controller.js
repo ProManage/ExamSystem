@@ -78,6 +78,7 @@ exsysControllers.controller('listQuestionController', ['$rootScope', '$scope', '
             for (var i in $scope.questions){
                 if (question.id == $scope.questions[i].id){
                     $scope.questions.splice( i, 1 );
+                    break;
                 }
             }
         });
