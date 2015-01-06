@@ -14,9 +14,16 @@
             <li class="question-li" ng-repeat="question in questions | filter:keywords" ng-switch on="question.type">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <b>@{{ question.id }}.</b> @{{ type_map[question.type] }} 难度:<b>@{{ question.difficulty }}</b>
-                        <input type="checkbox" ng-model="question.selected"
-                               ng-change="selected_changed($event,question)">
+                        <input type="checkbox" ng-model="question.selected" ng-change="selected_changed($event,question)">
+                         &nbsp;&nbsp;
+                        <b>@{{ question.id }}.</b> @{{ type_map[question.type] }} &nbsp;&nbsp;&nbsp;&nbsp;难度:
+                        <b>
+                            <div ng-class="{true:'glyphicon glyphicon-star',false:'glyphicon glyphicon-star-empty'}[question.difficulty >= 1]"></div>
+                            <div ng-class="{true:'glyphicon glyphicon-star',false:'glyphicon glyphicon-star-empty'}[question.difficulty >= 2]"></div>
+                            <div ng-class="{true:'glyphicon glyphicon-star',false:'glyphicon glyphicon-star-empty'}[question.difficulty >= 3]"></div>
+                            <div ng-class="{true:'glyphicon glyphicon-star',false:'glyphicon glyphicon-star-empty'}[question.difficulty >= 4]"></div>
+                            <div ng-class="{true:'glyphicon glyphicon-star',false:'glyphicon glyphicon-star-empty'}[question.difficulty >= 5]"></div>
+                        </b>
                         <span class="pull-right">@{{ question.labels }}</span>
                     </div>
                     <div class="panel-body">
