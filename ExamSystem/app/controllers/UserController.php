@@ -82,7 +82,7 @@ class UserController extends \BaseController
     public function update($id)
     {
         $data = Input::only(['email']);
-		$user = User::find($id) -> first();
+		$user = User::find($id);
 		$user -> email = $data['email'];
 		$user -> save();
         return Redirect::route('users.show', array($user->id));;
