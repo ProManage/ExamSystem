@@ -138,6 +138,7 @@ exsysControllers.controller('testController', ['$rootScope', '$scope', '$http', 
         var qs = data.questions;
         for (var i in qs) {
             qs[i].content = JSON.parse(qs[i].content);
+            qs[i].answer = JSON.parse(qs[i].answer);
             qs[i].last_answer = qs[i].answer;
         }
         $scope.questions = qs;
