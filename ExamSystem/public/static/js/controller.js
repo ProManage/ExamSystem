@@ -184,18 +184,31 @@ exsysControllers.controller('gradingController', ['$rootScope', '$scope', '$http
         $scope.testinfo = data.testinfo;
         $scope.examinee = data.examinee;
     });
-    $scope.total_score = function(){
+    $scope.total_score = function () {
         var score = 0;
         for (var i in $scope.questions)
             score += $scope.questions[i].score;
         return score;
     }
-    $scope.auto_mark = function(){
-        for (var i in $scope.questions)
-        {
+    $scope.auto_mark = function () {
+        for (var i in $scope.questions) {
             var q = $scope.questions[i];
             q.score = q.value * (q.correct_answer == q.answer)
         }
+    }
+    $scope.submit_score = function () {
+        var data = [];
+        for (var i in $scope.questions)
+        {
+            var question = $scope.questions[i];
+            data.push({
+                'tqid': question.tqid,
+                'score': question.score
+            });
+        }
+        $http.put("",data).success(function(){
+
+        });
 
     }
 }]);

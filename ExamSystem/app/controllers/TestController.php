@@ -48,8 +48,12 @@ class TestController extends \BaseController
      */
     public function show($id)
     {
+        $testpaper = TestPaper::find($id);
+        if (time() > strtotime($testpaper->end_time) || time() < strtotime($testpaper-> start_time))
+            return View::make('error', [
+                'error' => "不在考试时间范围"
+            ]);
         if (Request::ajax()) {
-            $testpaper = TestPaper::find($id);
             $testquestions = TestQuestion::where('testpaper_id', '=', $testpaper->id)->get();
             $questions = [];
             foreach ($testquestions as $tq) {
@@ -113,14 +117,13 @@ class TestController extends \BaseController
         //
     }
 
-    public  function answer($id)
+    public function answer($id)
     {
         $test = TestPaper::find($id);
-        if (time() > $test->end_time || time() < $test.start_time)
+        if (time() > strtotime($test->end_time) || time() < strtotime($test-> start_time))
             return "not right time";
         $data = Input::all();
-        foreach($data as $answer)
-        {
+        foreach ($data as $answer) {
             $testquestion = TestQuestion::find($answer['tqid']);
             if ($testquestion->testpaper_id != $id)
                 continue;
@@ -128,7 +131,7 @@ class TestController extends \BaseController
                 'username' => Auth::user()->username,
                 'testquestion_id' => $answer['tqid']
             ]);
-            $testanswer-> testpaper_id = $id;
+            $testanswer->testpaper_id = $id;
             $testanswer->answer = $answer['answer'];
             $testanswer->save();
         }

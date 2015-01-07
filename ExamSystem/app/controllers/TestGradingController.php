@@ -95,9 +95,24 @@ class TestGradingController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
+	public function update($testpaper_id,$username)
 	{
-		//
+		$test = TestPaper::find($testpaper_id);
+		if (time() > strtotime($test->end_time) || time() < strtotime($test-> start_time))
+			return "not right time";
+		$data = Input::all();
+		foreach ($data as $answer) {
+			$testquestion = TestQuestion::find($answer['tqid']);
+			if ($testquestion->testpaper_id != $testpaper_id)
+				continue;
+			$testanswer = TestAnswer::FirstOrNew([
+				'username' => Auth::user()->username,
+				'testquestion_id' => $answer['tqid']
+			]);
+			$testanswer->testpaper_id = $testpaper_id;
+			$testanswer->score = $answer['score'];
+			$testanswer->save();
+		}
 	}
 
 
