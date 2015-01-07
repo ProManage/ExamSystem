@@ -7,7 +7,7 @@
         <form class="form-inline form-bottom-margin">
             <div class="form-group">
                 <label>筛选关键字:</label>
-                    <input class="form-control" type="text" ng-model="keywords">
+                    <input class="form-control" type="text" ng-model="keywords" style="padding: 4px 10px 4px 25px; background-image: url('{{URL::to('/static/search.png')}}'); background-position: 5px center; background-repeat: no-repeat;">
             </div>
         </form>
         <ul class="">
