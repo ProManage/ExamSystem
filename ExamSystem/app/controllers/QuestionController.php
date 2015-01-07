@@ -105,7 +105,7 @@ class QuestionController extends \BaseController {
 	 */
 	public function destroy($id)
 	{
-		//
+        Question::destroy($id);
 	}
 
 

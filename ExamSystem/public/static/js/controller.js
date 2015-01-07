@@ -72,6 +72,17 @@ exsysControllers.controller('listQuestionController', ['$rootScope', '$scope', '
     $scope.$on('selected_questions_changed', function ($event, qid, add) {
         $scope.qid_question_map[qid].selected = add;
     });
+    $scope.delete_question = function(question)
+    {
+        $http.delete($rootScope.root_url + '/questions/' + question.id).success(function(){
+            for (var i in $scope.questions){
+                if (question.id == $scope.questions[i].id){
+                    $scope.questions.splice( i, 1 );
+                    break;
+                }
+            }
+        });
+    }
 }]);
 exsysControllers.controller('selectQuestionController', ['$rootScope', '$scope', '$http', function ($rootScope, $scope, $http) {
     $scope.isEmpty = function (obj) {

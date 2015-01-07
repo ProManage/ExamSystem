@@ -100,7 +100,8 @@ class TestPaperController extends \BaseController
      */
     public function destroy($id)
     {
-        //
+        TestPaper::destroy($id);
+        return Redirect::back();
     }
 
 

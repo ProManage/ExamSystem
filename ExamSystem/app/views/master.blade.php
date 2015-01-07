@@ -26,7 +26,25 @@
     <script src="{{URL::to('/static/js/app.js')}}"></script>
     <script src="{{URL::to('/static/js/controller.js')}}"></script>
     @yield('head')
-
+    <script>
+        function Chk_reg(){
+            var username=document.getElementById('username_reg').value;
+            var email=document.getElementById('email_reg').value;
+            var password=document.getElementById('password_reg').value;
+            if (username=="" || email=="" || password==""){
+                alert("不能为空! 请输入完整!");
+                return false;
+            }
+        }
+        function Chk_log(){
+            var username=document.getElementById('username_log').value;
+            var password=document.getElementById('password_log').value;
+            if (username=="" || password==""){
+                alert("不能为空! 请输入完整!");
+                return false;
+            }
+        }
+    </script>
 </head>
 <body>
 <input type="hidden" ng-init="root_url='{{URL::to('/')}}'">
@@ -106,13 +124,13 @@
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                 <h4 class="modal-title">注册</h4>
             </div>
-            <form id="modal_register_form" role="form" method="post" action="register">
+            <form id="modal_register_form" role="form" method="post" action="register" onsubmit="return Chk_reg();">
                 <div class="modal-body">
-                    <div class="form-group"><input type="text" class="form-control" name="username" placeholder="用户名">
+                    <div class="form-group"><input type="text" class="form-control" id="username_reg" name="username" placeholder="用户名">
                     </div>
-                    <div class="form-group"><input type="email" class="form-control" name="email" placeholder="电子邮箱">
+                    <div class="form-group"><input type="email" class="form-control" id="email_reg" name="email" placeholder="电子邮箱">
                     </div>
-                    <div class="form-group"><input type="password" class="form-control" name="password"
+                    <div class="form-group"><input type="password" class="form-control" id="password_reg" name="password"
                                                    placeholder="密码"></div>
                     <div class="form-group"><input type="text" class="form-control" name="student_id" placeholder="学号">
                     </div>
@@ -132,16 +150,16 @@
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                 <h4 class="modal-title">登陆</h4>
             </div>
-            <form id="modal_login_form" role="form" method="post" action="login">
+            <form id="modal_login_form" role="form" method="post" action="login" onsubmit="return Chk_log();">
 
                 <div class="modal-body">
                     <div class="form-group">
                         <label class="control-label"></label>
-                        <input type="text" class="form-control" name="username" placeholder="用户名">
+                        <input type="text" class="form-control" id="username_log" name="username" placeholder="用户名">
                     </div>
                     <div class="form-group">
                         <label class="control-label"></label>
-                        <input type="password" class="form-control" name="password" placeholder="密码">
+                        <input type="password" class="form-control" id="password_log" name="password" placeholder="密码">
                     </div>
                 </div>
                 <div class="modal-footer">
