@@ -27,6 +27,7 @@
                         <div class="pull-right" ng-click="delete_question(question)">
                             <span class="glyphicon glyphicon-remove-circle"></span>
                         </div>
+                        <a class="pull-right" href="@{{ root_url + '/questions/' + question.id + '/edit' }}" style="margin-right:20px;">编辑</a>
                         <span class="pull-right" style="margin-right: 15px;">@{{ question.labels }}</span>
                     </div>
                     <div class="panel-body">
