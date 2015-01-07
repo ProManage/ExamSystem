@@ -23,6 +23,7 @@
 @section('content')
     <div class="container">
         <div ng-controller="QuestionController" ng-init="operate='{{$operate}}'">
+            <input id='operate_value'type="hidden" value="{{$operate}}">
             @if ($operate == 'edit')
             <input id='question_id'type="hidden" value="{{$question_id}}">
             @endif

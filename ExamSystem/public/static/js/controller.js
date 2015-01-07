@@ -3,6 +3,7 @@
  */
 var exsysControllers = angular.module('exsysControllers', []);
 exsysControllers.controller('QuestionController', ['$scope', '$http', function ($scope, $http) {
+    $scope.operate = $("#operate_value").val();
     $scope.question = {
         'choice': {
             'choices': {}

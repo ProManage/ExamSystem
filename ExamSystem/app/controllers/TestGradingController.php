@@ -8,9 +8,11 @@ class TestGradingController extends \BaseController {
 	 *
 	 * @return Response
 	 */
-	public function index()
+	public function index($testpaper_id)
 	{
-		//
+//		$data = TestAnswer::where('testpaper_id','=',$testpaper_id)->groupBy('username')->sum('score')->get();
+		$data = DB::select('select examinee.username,student_id,score from (select username,sum(score) as score from testanswers where testpaper_id = ?) as examinee  inner join users on examinee.username = users.username;',[$testpaper_id]);
+		return $data;
 	}
 
 
@@ -97,9 +99,7 @@ class TestGradingController extends \BaseController {
 	 */
 	public function update($testpaper_id,$username)
 	{
-		$test = TestPaper::find($testpaper_id);
-		if (time() > strtotime($test->end_time) || time() < strtotime($test-> start_time))
-			return "not right time";
+//		$test = TestPaper::find($testpaper_id);
 		$data = Input::all();
 		foreach ($data as $answer) {
 			$testquestion = TestQuestion::find($answer['tqid']);
