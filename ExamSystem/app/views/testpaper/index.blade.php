@@ -14,7 +14,7 @@
                 <tbody>
                 @foreach ($testpapers as $test)
                     <tr>
-                        <td><a href="{{URL::to('/testpapers') .'/'. $test->id}}">{{ $test->name }}</a></td>
+                        <td><a href="{{URL::to('/testpapers') .'/'. $test->id . '/grading'}}">{{ $test->name }}</a></td>
                         <td>{{ $test->start_time }}</td>
                         <td>{{ $test->end_time }}</td>
                         <td>{{ $test->creater }}</td>

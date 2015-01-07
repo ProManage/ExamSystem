@@ -219,7 +219,7 @@ exsysControllers.controller('gradingController', ['$rootScope', '$scope', '$http
             });
         }
         $http.put("",data).success(function(){
-
+            window.location.href = $rootScope.root_url + '/testpapers/' + $scope.testinfo.id + '/grading';
         });
 
     }

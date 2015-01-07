@@ -12,7 +12,10 @@ class TestGradingController extends \BaseController {
 	{
 //		$data = TestAnswer::where('testpaper_id','=',$testpaper_id)->groupBy('username')->sum('score')->get();
 		$data = DB::select('select examinee.username,student_id,score from (select username,sum(score) as score from testanswers where testpaper_id = ?) as examinee  inner join users on examinee.username = users.username;',[$testpaper_id]);
-		return $data;
+		return View::make('test.grading_index',[
+			'testpaper_id' => $testpaper_id,
+			'examinees' => $data
+		]);
 	}
 
 
