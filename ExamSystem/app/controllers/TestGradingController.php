@@ -106,7 +106,7 @@ class TestGradingController extends \BaseController {
 			if ($testquestion->testpaper_id != $testpaper_id)
 				continue;
 			$testanswer = TestAnswer::FirstOrNew([
-				'username' => Auth::user()->username,
+				'username' => $username,
 				'testquestion_id' => $answer['tqid']
 			]);
 			$testanswer->testpaper_id = $testpaper_id;

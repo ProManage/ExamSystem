@@ -36,7 +36,7 @@ Route::group(array('before' => 'auth'), function () {
         Route::resource('testpapers','TestPaperController');
         Route::get('/testpapers/{testpapers}/grading/','TestGradingController@index');
         Route::get('/testpapers/{testpapers}/grading/{username}','TestGradingController@show');
-        Route::post('/testpapers/{testpapers}/grading/{username}','TestGradingController@store');
+        Route::put('/testpapers/{testpapers}/grading/{username}','TestGradingController@update');
     });
     Route::resource('tests','TestController');
     Route::resource("users",'UserController');
