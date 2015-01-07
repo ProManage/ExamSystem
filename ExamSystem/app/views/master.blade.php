@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8">
     <title>@yield('title') - ExSys</title>
+    <link rel="shortcut icon" type="image/ico" href="{{URL::to('/static/icon_16.ico')}}"/>
     <link href="{{URL::to('/static/css/bootstrap.css')}}" media="all" rel="stylesheet" type="text/css">
     <link href="{{URL::to('/static/css/main.css')}}" media="all" rel="stylesheet" type="text/css">
     {{--    <link href="{{URL::to('/static/css/bootstrap-theme.css')}}" media="all" rel="stylesheet" type="text/css">--}}
@@ -58,6 +59,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
+            <img class="navbar-brand" src="{{URL::to('/static/pic_48.png')}}"/>
             <a class="navbar-brand" href="{{URL::to('/')}}">ExSys</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
