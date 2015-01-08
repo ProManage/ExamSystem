@@ -30,9 +30,14 @@
                     </div>
                 </li>
             </ul>
+            <div class="panel panel-default" id="grading_tool">
+                <label>总分:</label>
+                <h3>@{{ full_score() }}</h3>
+            </div>
         </div>
     </div>
     @include('question.selected_questions_fixed')
+
 @stop
 @section('extra_script')
     <script src="{{URL::to('/static/js/bootstrap-datetimepicker.min.js')}}"></script>

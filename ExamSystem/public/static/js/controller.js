@@ -143,6 +143,12 @@ exsysControllers.controller('createTestPaperController', ['$rootScope', '$scope'
             window.location.href = $rootScope.root_url + "/testpapers"
         });
     };
+    $scope.full_score = function(){
+        var score  = 0;
+        for (var i in $scope.questions)
+            score += $scope.questions[i].value;
+        return score;
+    }
 }]);
 
 exsysControllers.controller('testController', ['$rootScope', '$scope', '$http', function ($rootScope, $scope, $http) {
