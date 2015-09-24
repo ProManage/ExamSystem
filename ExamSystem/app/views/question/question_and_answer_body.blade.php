@@ -15,3 +15,6 @@
     <p class="question-desc">@{{ question.content.description }}</p>
     <p><b>关键词:</b> @{{ question.answer }}</p>
 </div>
+<div ng-switch-when="programing">
+    <p class="question-desc">@{{ question.content.description }}</p>
+</div>

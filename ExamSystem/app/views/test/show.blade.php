@@ -29,6 +29,10 @@
                             <p class="question-desc">@{{ question.content.description }}</p>
                             <textarea class="form-control" rows="5" ng-model="question.answer" style="resize: none; " ng-blur="update_answer(question)"></textarea>
                         </div>
+                        <div ng-switch-when="programing">
+                            <p class="question-desc">@{{ question.content.description }}</p>
+                            <textarea class="form-control" rows="5" ng-model="question.answer" style="resize: none; font-family:  Monaco, Menlo, Consolas, 'Courier New', monospace; " ng-blur="update_answer(question)"></textarea>
+                        </div>
                     </div>
                 </div>
             </li>
