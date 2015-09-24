@@ -32,6 +32,12 @@
                     </div>
                 </div>
             </li>
+            <div class="panel panel-default" id="grading_tool">
+                <label>结束时间:</label>
+                <p>@{{ testinfo.end_time }}</p>
+            </div>
         </ul>
+        <a href="../" class="btn btn-primary">交卷</a>
+
     </div>
 @stop

@@ -22,14 +22,14 @@ class QuestionTableSeeder extends Seeder
             'content' => '{"description":"C++\u7a0b\u5e8f\u7684\u6269\u5c55\u540d\u4e3a"}',
             'answer' => '"cpp"',
             'difficulty' => 1,
-            'labels' => 'C++'
+            'labels' => 'C++,基础'
         ));
         Question::create(array(
             'type' => 'saq',
             'content' => '{"description":"C++\u4e2d\u6709\u54ea\u51e0\u79cd\u5e38\u91cf\uff0c\u7ed9\u51fa\u5b9e\u4f8b\u3002"}',
             'answer' => '"\u6574\u578b\u5e38\u91cf,\u6d6e\u70b9\u5e38\u91cf,\u5b57\u7b26\u5e38\u91cf,\u5b57\u7b26\u4e32\u5e38\u91cf,\u6807\u8bc6\u5e38\u91cf,\u6362\u7801\u5e8f\u5217"',
             'difficulty' => 4,
-            'labels' => 'C++,常量'
+            'labels' => 'C++,常量,基础'
         ));
         Question::create(array(
             'type' => 'choice',
