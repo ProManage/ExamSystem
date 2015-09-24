@@ -39,18 +39,34 @@ exsysControllers.controller('QuestionController', ['$scope', '$http', function (
         };
         var test_in = $("input[type='file'][name='test.in']");
         var test_out = $("input[type='file'][name='test.out']");
-        if (test_in.val())
-            question.append('test_in', test_in);
-        if (test_out.val())
-            question.append('test_in', test_out);
-        
+
+        var post_test_data = function () {
+            var test_data = new FormData();
+            if (test_in.val())
+                test_data.append('test_in', test_in[0].files[0]);
+            if (test_out.val())
+                test_data.append('test_out', test_out[0].files[0]);
+            $.ajax({
+                url: $scope.root_url + '/testdata/' + $scope.question.id,
+                type: 'POST',
+                data: test_data,
+                processData: false,
+                contentType: false,
+                async:false
+            }, function (data) {
+                console.log(data);
+            });
+        };
         if ($scope.operate == 'create') {
-            $http.post('.', question).success(function () {
+            $http.post('.', question).success(function (data) {
+                $scope.question.id = data;
+                post_test_data();
                 window.location.href = $scope.root_url + "/questions/"
             });
         } else {
             question.id = $scope.question.id;
             $http.put('.', question).success(function () {
+                post_test_data();
                 window.location.href = $scope.root_url + "/questions/"
             });
         }

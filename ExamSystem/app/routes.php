@@ -37,8 +37,10 @@ Route::group(array('before' => 'auth'), function () {
         Route::get('/testpapers/{testpapers}/grading/','TestGradingController@index');
         Route::get('/testpapers/{testpapers}/grading/{username}','TestGradingController@show');
         Route::put('/testpapers/{testpapers}/grading/{username}','TestGradingController@update');
+        Route::post('/testdata/{question_id}','TestDataController@store');
     });
     Route::resource('tests','TestController');
     Route::resource("users",'UserController');
     Route::put('/tests/{tests}/answers',"TestController@answer");
 });
+Route::get('/testdata/{question_id}/{io}','TestDataController@get');

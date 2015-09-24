@@ -44,7 +44,7 @@ class QuestionController extends \BaseController {
 		$data['content'] = json_encode($data['content']);
 		$data['answer'] = json_encode($data['answer']);
 		$new_question  = Question::create($data);
-
+		return $new_question->id;
 
 	}
 

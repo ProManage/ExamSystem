@@ -79,7 +79,7 @@
                     </form>
                 </li>
                 <li  ng-switch-when="programing">
-                    <form id="question-saq">
+                    <form id="question-programing">
                         <div class="form-group">
                             <label>题目描述</label>
                             <textarea class="form-control" rows="5" ng-model="question.programing.description" style="resize: none; "></textarea>
