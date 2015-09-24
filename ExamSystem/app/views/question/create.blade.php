@@ -31,6 +31,7 @@
                 <li role="presentation" ng-class="{true:'active',false:''}[question.type=='choice']"><a href="" ng-click="question.type='choice'">选择题</a></li>
                 <li role="presentation" ng-class="{true:'active',false:''}[question.type=='filling']"><a href="" ng-click="question.type='filling'">填空题</a></li>
                 <li role="presentation" ng-class="{true:'active',false:''}[question.type=='saq']"><a href="" ng-click="question.type='saq'">简答题</a></li>
+                <li role="presentation" ng-class="{true:'active',false:''}[question.type=='programing']"><a href="" ng-click="question.type='programing'">编程题</a></li>
             </ul>
             <div>
                 <div class="inline"></div>
@@ -74,6 +75,22 @@
                         <div class="form-group">
                             <label>关键词:</label>
                             <input class="form-control" ng-model="question.answer.saq">
+                        </div>
+                    </form>
+                </li>
+                <li  ng-switch-when="programing">
+                    <form id="question-saq">
+                        <div class="form-group">
+                            <label>题目描述</label>
+                            <textarea class="form-control" rows="5" ng-model="question.programing.description" style="resize: none; "></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>输入数据</label>
+                            <input type="file" class="form-control" name="test.in" style="resize: none; ">
+                        </div>
+                        <div class="form-group">
+                            <label>输出数据</label>
+                            <input type="file" class="form-control" name="test.out" style="resize: none; ">
                         </div>
                     </form>
                 </li>

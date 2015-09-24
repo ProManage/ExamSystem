@@ -37,6 +37,13 @@ exsysControllers.controller('QuestionController', ['$scope', '$http', function (
             'difficulty': $scope.question.difficulty,
             'labels': $scope.question.labels || ""
         };
+        var test_in = $("input[type='file'][name='test.in']");
+        var test_out = $("input[type='file'][name='test.out']");
+        if (test_in.val())
+            question.append('test_in', test_in);
+        if (test_out.val())
+            question.append('test_in', test_out);
+        
         if ($scope.operate == 'create') {
             $http.post('.', question).success(function () {
                 window.location.href = $scope.root_url + "/questions/"
@@ -65,7 +72,8 @@ exsysControllers.controller('listQuestionController', ['$rootScope', '$scope', '
     $scope.type_map = {
         'choice': '选择题',
         'filling': '填空题',
-        'saq': '简答题'
+        'saq': '简答题',
+        'programing': '编程题'
     };
     $scope.selected_changed = function ($event, question) {
         $rootScope.$broadcast('selected_questions_changed', question.id, question.selected);
@@ -73,12 +81,11 @@ exsysControllers.controller('listQuestionController', ['$rootScope', '$scope', '
     $scope.$on('selected_questions_changed', function ($event, qid, add) {
         $scope.qid_question_map[qid].selected = add;
     });
-    $scope.delete_question = function(question)
-    {
-        $http.delete($rootScope.root_url + '/questions/' + question.id).success(function(){
-            for (var i in $scope.questions){
-                if (question.id == $scope.questions[i].id){
-                    $scope.questions.splice( i, 1 );
+    $scope.delete_question = function (question) {
+        $http.delete($rootScope.root_url + '/questions/' + question.id).success(function () {
+            for (var i in $scope.questions) {
+                if (question.id == $scope.questions[i].id) {
+                    $scope.questions.splice(i, 1);
                     break;
                 }
             }
@@ -143,8 +150,8 @@ exsysControllers.controller('createTestPaperController', ['$rootScope', '$scope'
             window.location.href = $rootScope.root_url + "/testpapers"
         });
     };
-    $scope.full_score = function(){
-        var score  = 0;
+    $scope.full_score = function () {
+        var score = 0;
         for (var i in $scope.questions)
             score += $scope.questions[i].value;
         return score;
@@ -216,15 +223,14 @@ exsysControllers.controller('gradingController', ['$rootScope', '$scope', '$http
     }
     $scope.submit_score = function () {
         var data = [];
-        for (var i in $scope.questions)
-        {
+        for (var i in $scope.questions) {
             var question = $scope.questions[i];
             data.push({
                 'tqid': question.tqid,
                 'score': question.score
             });
         }
-        $http.put("",data).success(function(){
+        $http.put("", data).success(function () {
             window.location.href = $rootScope.root_url + '/testpapers/' + $scope.testinfo.id + '/grading';
         });
 
