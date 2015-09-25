@@ -44,3 +44,4 @@ Route::group(array('before' => 'auth'), function () {
     Route::put('/tests/{tests}/answers',"TestController@answer");
 });
 Route::get('/testdata/{question_id}/{io}','TestDataController@get');
+Route::get('/result/{runid}/{result}','TestDataController@update');

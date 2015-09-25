@@ -22,7 +22,15 @@ class TestDataController extends BaseController
     public function get($question_id, $io)
     {
         $pathToFile = storage_path() . "\\testdata\\" . $question_id . "\\test." . $io;
-        return Response::download($pathToFile,"test." . $io, array('Content-Type' => 'text/plain'));
+        return Response::download($pathToFile, "test." . $io, array('Content-Type' => 'text/plain'));
     }
 
+    public function update($runid, $result)
+    {
+        $testanswer = TestAnswer::find($runid);
+        $testquestion = $testquestion = TestQuestion::find($testanswer->testquestion_id);
+
+        $testanswer->score = '' + intval($result) * intval($testquestion->value) ;
+        $testanswer->save();
+    }
 }

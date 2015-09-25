@@ -34,6 +34,10 @@
                             <p><textarea class="form-control" rows="5" ng-model="question.answer" style="resize: none; " ng-blur="update_answer(question)" readonly></textarea></p>
                             <p><b>关键词:</b> @{{ question.correct_answer }}</p>
                         </div>
+                        <div ng-switch-when="programing">
+                            <p class="question-desc">@{{ question.content.description }}</p>
+                            <p><textarea class="form-control" rows="5" ng-model="question.answer" style="resize: none;  font-family:  Monaco, Menlo, Consolas, 'Courier New', monospace;" ng-blur="update_answer(question)" readonly></textarea></p>
+                        </div>
                     </div>
                 </div>
             </li>

@@ -234,7 +234,8 @@ exsysControllers.controller('gradingController', ['$rootScope', '$scope', '$http
     $scope.auto_mark = function () {
         for (var i in $scope.questions) {
             var q = $scope.questions[i];
-            q.score = q.value * (q.correct_answer == q.answer)
+            if (q.type != 'programing')
+                q.score = q.value * (q.correct_answer == q.answer)
         }
     }
     $scope.submit_score = function () {
